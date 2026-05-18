@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: white;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 70px 20px 40px;
+}
+
+header h1 {
+  font-size: 50px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+/* TITLE */
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  color: #38bdf8;
+  font-size: 28px;
+}
+
+/* GRID */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* CARD STYLE */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 16px;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #38bdf8;
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card p {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* CONTACT SECTION */
+.contact-title {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 26px;
+  color: #38bdf8;
+}
+
+/* CONTACT GRID */
+.contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* CONTACT CARD */
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Abd Elftah Ebrahem</h1>
+  <p>Front-End Developer | HTML - CSS - JavaScript</p>
+</header>
+
+<h2>My Projects</h2>
+
+<div class="container" id="projectsBox"></div>
+
+<!-- CONTACT -->
+<h2 class="contact-title">Contact Me</h2>
+
+<div class="contact-container">
+  <div class="contact-card">
+    <h3>Name</h3>
+    <p>Abd Elftah Ebrahem</p>
+  </div>
+
+  <div class="contact-card">
+    <h3>Phone</h3>
+    <p>+201500079896</p>
+  </div>
+</div>
+
+<script>
+function loadProjects() {
+  let projects = JSON.parse(localStorage.getItem("projects")) || [];
+  let box = document.getElementById("projectsBox");
+
+  box.innerHTML = "";
+
+  if (projects.length === 0) {
+    box.innerHTML = "<p style='text-align:center'>No projects yet</p>";
+    return;
+  }
+
+  projects.forEach((p) => {
+    box.innerHTML += `
+      <div class="card">
+        <h3>${p.title}</h3>
+        <p>Project Link Available</p>
+        <a class="btn" href="${p.link}" target="_blank">
+          View Project
+        </a>
+      </div>
+    `;
+  });
+}
+
+loadProjects();
+</script>
+
+</body>
+</html>
